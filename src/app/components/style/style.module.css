@@ -1,0 +1,22 @@
+.cardDashboard{
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+}
+
+.cardDashboardContent{
+  color: var(--card-text);
+}
+
+.cardDashboardinfo{
+  color: var(--card-info);
+}
+
+.add{
+  background-color: var(--primary-color);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: flex;
+  place-items: center;
+}

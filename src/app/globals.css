@@ -1,13 +1,18 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary-color: #2064AD;
+  --background-color: #f5f5f5;
+  --text-color: #121417;
+  --text-input: #424250;
+  --background-input: #EFF2F5;
+  --icon-color: #637587;
+  --card-background:#4F6696;
+  --lbl-chart:#9291A5;
+  --card-text:#E5E8EB;
+  --card-info:#F0F2F5;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
 }
 
 html,
