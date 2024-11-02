@@ -1,9 +1,9 @@
-import HomePage from "@/app/home/page";
-import ProductPage from "@/app/articles/product/page";
-import CategoryPage from "@/app/articles/category/page";
+import IndexPage from "@/app/views/IndexPage";
+import ProductPage from "@/app/views/ProductPage";
+import CategoryPage from "@/app/views/CategoryPage";
 
 export const renderPageContent = {
-    '/home': <HomePage />,
+    '/home': <IndexPage />,
     '/articles/product': <ProductPage />,
     '/articles/category':<CategoryPage />,
   };

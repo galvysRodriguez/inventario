@@ -5,10 +5,10 @@ import { DynamicBackground} from "../components/usoMui/DynamicBackground"
 
 
 const content = "Productos agotados"
-  const contentMin = "Productos en mínimo"
-  const contentMax = "Productos en máximo"
-  const num = 42;
-export default function HomePage() {
+const contentMin = "Productos en mínimo"
+const contentMax = "Productos en máximo"
+const num = 42;
+export default function IndexPage() {
   return (
     <section className={styles.page}>
       <h1>Inventario</h1>

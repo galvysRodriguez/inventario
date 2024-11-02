@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { MenuItem } from "@mui/material";
 
 const currencies = [
@@ -23,7 +23,7 @@ const currencies = [
 
 export function InputProduct(){
     return(
-        <>
+        <Box style={{padding: '1rem', display: 'grid', gap: '1rem'}}>
             <TextField
             id="outlined-textarea"
             label="Titulo"
@@ -68,7 +68,7 @@ export function InputProduct(){
             multiline
             />
 
-        </>
+        </Box>
     )
     
 }

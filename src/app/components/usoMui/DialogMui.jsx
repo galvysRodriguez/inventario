@@ -6,7 +6,7 @@ import { DialogContent } from '@mui/material';
 import Button from '@mui/material/Button';
 
 export function DialogMui({open, handleClose, text, submit, title, children}){
-
+  //
     return (
         <Dialog
         open={open}
@@ -15,6 +15,7 @@ export function DialogMui({open, handleClose, text, submit, title, children}){
           component: 'form',
           onSubmit: {submit},
         }}
+        
       >
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>

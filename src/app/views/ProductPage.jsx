@@ -1,12 +1,8 @@
 import styles from "@/app/page.module.css"
 import StickyHeadTable from "@/app/components/usoMui/MuiTable";
-import { PrimaryButton } from "@/app/components/PrimaryButton";
-import { SecondaryButton } from "@/app/components/SecondaryButton";
 import '@/app/globals.css'
 import { rows, columns } from "@/app/components/usoMui/rowsTest";
-import { useState } from "react";
-import ModalForm from "@/app/components/usoMui/ModalForm";
-import { InputProduct } from "./FormProduct";
+import { InputProduct } from "@/app/components/textfield/InputProduct";
 import FormDialog from "@/app/components/usoMui/ModalForm";
 
 export default function ProductPage() {
@@ -17,8 +13,6 @@ export default function ProductPage() {
               <InputProduct></InputProduct>
             </FormDialog>
             <StickyHeadTable columns={columns} rows={rows}></StickyHeadTable>
-            
         </section>
-        
   );
 }
