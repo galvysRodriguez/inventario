@@ -29,12 +29,12 @@ export const NAVIGATION = [
       icon: <Inventory />,
       children: [
         {
-          segment: 'product',
+          segment: 'products',
           title: 'Productos',
           icon: <Article />,
         },
         {
-          segment: 'category',
+          segment: 'categories',
           title: 'Categorias',
           icon: <Category/>,
         },

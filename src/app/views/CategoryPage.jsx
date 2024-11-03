@@ -4,6 +4,8 @@ import ColumnSelectorGrid from "@/app/components/usoMui/DataGridMui"
 import { COLUMN_CATEGORY as columns } from "@/app/utils/columns";
 import { SkeletonDatagrid } from "@/app/components/usoMui/SkeletonDatagrid";
 import { DataGridProvider } from "../context/datagrid";
+import { ENDPOINT_CATEGORY } from "../utils/const";
+import { getRows } from "../api/rowsApi";
 
 
 const rows= [

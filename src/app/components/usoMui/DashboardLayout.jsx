@@ -42,6 +42,8 @@ function DashboardLayoutAccount({window, children}) {
   // Remove this const when copying and pasting into your project.
   const demoWindow = window !== undefined ? window() : undefined;
 
+  console.log(router)
+
   return (
     // preview-start
     <AppProvider
@@ -57,7 +59,7 @@ function DashboardLayoutAccount({window, children}) {
       window={demoWindow}
     >
       <DashboardLayout>
-        <DataGridProvider>
+        <DataGridProvider endpoint={router.pathname}>
           <DemoPageContent pathname={router.pathname}>
             {children}
           </DemoPageContent>

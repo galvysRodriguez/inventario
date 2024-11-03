@@ -1,92 +1,38 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useReducer, useEffect } from 'react';
+import { createRow,  updateRow, restoreRow, deleteRow, getRows} from '../api/rowsApi';
 
-// Crear el contexto
+const ACTIONS = {
+    SET_ROWS: 'SET_ROWS',
+    ADD_ROW: 'ADD_ROW',
+    UPDATE_ROW: 'UPDATE_ROW',
+    DELETE_ROW: 'DELETE_ROW',
+    RESTORE_ROW: 'RESTORE_ROW',
+};
+  
+  function rowsReducer(state, action) {
+    switch (action.type) {
+      case ACTIONS.SET_ROWS:
+        return action.payload;
+      case ACTIONS.ADD_ROW:
+        return [...state, action.payload];
+      case ACTIONS.UPDATE_ROW:
+        return state.map((row) => (row.id === action.payload.id ? action.payload : row));
+      case ACTIONS.DELETE_ROW:
+        return state.map((row) => (row.id === action.payload ? { ...row, visible: false } : row));
+      case ACTIONS.RESTORE_ROW:
+        return state.map((row) => (row.id === action.payload ? { ...row, visible: true } : row));
+      default:
+        throw new Error(`Unknown action type: ${action.type}`);
+    }
+}
+
 const DataGridContext = createContext();
-
-const keyFirstId = (arr) => {
-    arr.forEach((objeto) => {
-      const claves = Object.keys(objeto); // Obtener las claves del objeto
-      const primeraClave = claves[0]; // Obtener la primera clave
-      objeto['id'] = objeto[primeraClave]; // Asignar el valor a 'id'
-      delete objeto[primeraClave]; // Eliminar la primera clave original
-    });
-
-    return arr
-  };
-
 // Proveedor del contexto
-export const DataGridProvider = ({ children }) => {
-    const [rows, setRows] = useState([]);
-
-    const fetchData = async (endpoint) => {
-        try {
-          const response = await fetch(endpoint);
-          if (!response.ok) {
-            throw new Error('Error al obtener los datos');
-          }
-          const data = await response.json();
-          const result = keyFirstId(data.data)
-          console.log(result)
-          setRows(result); 
-        } catch (error) {
-          console.error('Error al obtener los datos:', error);
-        }
-      };
-
-  // Crear nueva fila en el DataGrid y en la API
-  const handleCreate = async (newRow, endpoint) => {
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newRow),
-      });
-      const createdRow = await response.json();
-      setRows((prev) => [...prev, createdRow]);
-    } catch (error) {
-      console.error('Error creating row:', error);
-    }
-  };
-
-  // Editar fila en el DataGrid y en la API
-  const handleEdit = async (updatedRow, endpoint) => {
-    try {
-      await fetch(`${endpoint}/${updatedRow.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedRow),
-      });
-      setRows((prev) => prev.map((row) => (row.id === updatedRow.id ? updatedRow : row)));
-    } catch (error) {
-      console.error('Error updating row:', error);
-    }
-  };
-
-  // Eliminar fila del DataGrid y en la API
-  const handleDelete = async (id, endpoint) => {
-    try {
-      await fetch(`${endpoint}/${id}`, { method: 'DELETE' });
-      setRows(rowsTotal.map(row => 
-        row.id === id ? { ...row, status: false } : row
-    ));
-    } catch (error) {
-      console.error('Error deleting row:', error);
-    }
-  };
-
-  const handleRestore = async (id, endpoint) => {
-    try {
-      await fetch(`${endpoint}/restore/${id}`, { method: 'PUT' });
-      setRows(rowsTotal.map(row => 
-        row.id === id ? { ...row, status: true } : row
-    ));
-    } catch (error) {
-      console.error('Error deleting row:', error);
-    }
-  };
-
+export const DataGridProvider = ({ children, endpoint }) => {
+   const [rows, dispatch] = useReducer(rowsReducer, []);
+  
   return (
-    <DataGridContext.Provider value={{ rows, handleCreate, handleEdit, handleDelete, fetchData, handleRestore }}>
+    <DataGridContext.Provider value={{ rows, dispatch, endpoint}}>
       {children}
     </DataGridContext.Provider>
   );
@@ -94,3 +40,56 @@ export const DataGridProvider = ({ children }) => {
 
 // Hook para usar el contexto
 export const useDataGrid = () => useContext(DataGridContext);
+
+export function useRowsActions() {
+  const { dispatch, endpoint, rows } = useContext(DataGridContext);
+
+  const handleCreate = async (newRow) => {
+    try {
+      const createdRow = await createRow(newRow, endpoint);
+      dispatch({ type: ACTIONS.ADD_ROW, payload: createdRow });
+    } catch (error) {
+      console.error('Error creating row:', error);
+    }
+  };
+
+  const handleEdit = async (updatedRow) => {
+    try {
+      await updateRow(updatedRow, endpoint);
+      dispatch({ type: ACTIONS.UPDATE_ROW, payload: updatedRow });
+    } catch (error) {
+      console.error('Error updating row:', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteRow(id, endpoint);
+      dispatch({ type: ACTIONS.DELETE_ROW, payload: id });
+      console.log(rows)
+    } catch (error) {
+      console.error('Error deleting row:', error);
+    }
+  };
+
+  const handleRestore = async (id) => {
+    try {
+      await restoreRow(id, endpoint);
+      dispatch({ type: ACTIONS.RESTORE_ROW, payload: id });
+      console.log(rows)
+    } catch (error) {
+      console.error('Error restoring row:', error);
+    }
+  };
+
+  const handleRows = async () => {
+    try {
+      const data = await getRows(endpoint);
+      dispatch({ type: ACTIONS.SET_ROWS, payload: data });
+    } catch (error) {
+      console.error('Error restoring row:', error);
+    }
+  };
+
+  return { handleCreate, handleEdit, handleDelete, handleRestore, handleRows };
+}

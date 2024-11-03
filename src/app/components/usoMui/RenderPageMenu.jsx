@@ -4,6 +4,6 @@ import CategoryPage from "@/app/views/CategoryPage";
 
 export const renderPageContent = {
     '/home': <IndexPage />,
-    '/articles/product': <ProductPage />,
-    '/articles/category':<CategoryPage />,
+    '/articles/products': <ProductPage />,
+    '/articles/categories':<CategoryPage />,
   };

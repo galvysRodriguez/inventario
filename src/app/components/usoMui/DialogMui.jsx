@@ -13,7 +13,7 @@ export function DialogMui({open, handleClose, text, submit, title, children}){
         onClose={handleClose}
         PaperProps={{
           component: 'form',
-          onSubmit: {submit},
+          onSubmit: submit,
         }}
         
       >
