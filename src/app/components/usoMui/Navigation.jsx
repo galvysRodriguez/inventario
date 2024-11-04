@@ -84,17 +84,17 @@ export const NAVIGATION = [
       ],
     },
     {
-      segment: 'locations',
+      segment: 'ubications',
       title: 'Ubicaciones',
       icon: <Place/>,
       children: [
         {
-          segment: 'store',
+          segment: 'warehouses',
           title: 'Depositos',
           icon: <Inbox />,
         },
         {
-          segment: 'headquartes',
+          segment: 'locations',
           title: 'Sedes',
           icon: <LocationCity />,
         },

@@ -25,22 +25,22 @@ export const COLUMN_CATEGORY =  [
 ]
 
 export const COLUMN_PRODUCT =  [
-    { field: 'name', headerName: 'Producto', width: 100,  resizable: false  },
-    { field: 'cateogory', headerName: 'Categoria', width: 100,  resizable: false  },
-    { field: 'price', headerName: 'Precio', width: 100,  resizable: false },
-    { field: 'cost', headerName: 'Costo', width: 100,  resizable: false  },
-    { field: 'min', headerName: 'Stock minimo', width: 100,  resizable: false  },
-    { field: 'max', headerName: 'Stock maximo', width: 100,  resizable: false  },
+    { field: 'titulo', headerName: 'Producto', width: 150,  resizable: false  },
+    { field: 'categoria', headerName: 'Categoria', width: 120,  resizable: false  },
+    { field: 'precio', headerName: 'Precio', width: 100,  resizable: false },
+    { field: 'costo', headerName: 'Costo', width: 100,  resizable: false  },
+    { field: 'minimo', headerName: 'minimo', width: 80,  resizable: false  },
+    { field: 'maximo', headerName: 'maximo', width: 80,  resizable: false  },
     visible
 ]
 
 export const COLUMN_LOCATION =  [
-    { field: 'name', headerName: 'Sede', width: 100,  resizable: false  },
+    { field: 'sede', headerName: 'Sede', width: 180,  resizable: false  },
     visible
 ]
 
 export const COLUMN_WAREHOUSE =  [
-    { field: 'name', headerName: 'Depósito', width: 100,  resizable: false  },
-    { field: 'location', headerName: 'Sede', width: 100,  resizable: false  },
+    { field: 'deposito', headerName: 'Depósito', width: 180,  resizable: false  },
+    { field: 'sede', headerName: 'Sede', width: 180,  resizable: false  },
     visible
 ]

@@ -1,6 +1,6 @@
 import { API_URL } from "@/app/utils/const";
 
-const keyFirstId = (arr) => {
+export const keyFirstId = (arr) => {
     arr.forEach((objeto) => {
       const claves = Object.keys(objeto); // Obtener las claves del objeto
       const primeraClave = claves[0]; // Obtener la primera clave
@@ -22,7 +22,6 @@ export const createRow = async (newRow, endpoint) => {
     if (!response.ok) throw new Error('Error creating row');
     const data = await response.json();
     const result = keyFirstId(data.data)
-    console.log(result)
     return result[0];
   };
 
@@ -32,7 +31,6 @@ export const createRow = async (newRow, endpoint) => {
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();
     const result = keyFirstId(data.data)
-    console.log(result)
     return result;
   };
 

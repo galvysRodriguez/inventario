@@ -16,7 +16,11 @@ const ACTIONS = {
       case ACTIONS.ADD_ROW:
         return [...state, action.payload];
       case ACTIONS.UPDATE_ROW:
-        return state.map((row) => (row.id === action.payload.id ? action.payload : row));
+        return state.map((row) => 
+          row.id === action.payload.id 
+              ? { ...row, ...action.payload } // Asegúrate de mezclar los campos existentes
+              : row
+      );
       case ACTIONS.DELETE_ROW:
         return state.map((row) => (row.id === action.payload ? { ...row, visible: false } : row));
       case ACTIONS.RESTORE_ROW:
@@ -47,7 +51,11 @@ export function useRowsActions() {
   const handleCreate = async (newRow) => {
     try {
       const createdRow = await createRow(newRow, endpoint);
-      dispatch({ type: ACTIONS.ADD_ROW, payload: createdRow });
+      const combinedRow = {
+        ...newRow,        // Propiedades de newRow
+        ...createdRow     // Sobrescribe con id y visible de createdRow
+      };
+      dispatch({ type: ACTIONS.ADD_ROW, payload: combinedRow });
     } catch (error) {
       console.error('Error creating row:', error);
     }
@@ -56,6 +64,7 @@ export function useRowsActions() {
   const handleEdit = async (updatedRow) => {
     try {
       await updateRow(updatedRow, endpoint);
+      console.log(updateRow)
       dispatch({ type: ACTIONS.UPDATE_ROW, payload: updatedRow });
     } catch (error) {
       console.error('Error updating row:', error);

@@ -32,7 +32,7 @@ export const columnsWithDelete = (columns, handleEditClick) =>{
                     
                 </>
               ),
-              width: 150,
+              width: 100,
             },
           ]
         )
