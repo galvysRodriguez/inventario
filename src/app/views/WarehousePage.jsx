@@ -8,19 +8,16 @@ import { ENDPOINT_LOCATION } from "../utils/const";
 import { getRowsVisble } from "../api/optionApi";
 
 export default function WarehousePage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const[location, SetLocation] = useState({})
 
   useEffect(() => {
-    setTimeout(() => {
-        const valor = async ( ) =>{
-            const result  = await getRowsVisble(ENDPOINT_LOCATION)
-            console.log(result)
-            SetLocation(result)
-          }
-            valor()
-      setLoading(false);
-    }, 2000); // Simula la carga de datos
+      const valor = async ( ) =>{
+          const result  = await getRowsVisble(ENDPOINT_LOCATION)
+          SetLocation(result)
+        }
+          valor()
+    setLoading(false);
   }, []);
   return (
         <section className={styles.page}>

@@ -64,7 +64,6 @@ export function useRowsActions() {
   const handleEdit = async (updatedRow) => {
     try {
       await updateRow(updatedRow, endpoint);
-      console.log(updateRow)
       dispatch({ type: ACTIONS.UPDATE_ROW, payload: updatedRow });
     } catch (error) {
       console.error('Error updating row:', error);
@@ -75,7 +74,7 @@ export function useRowsActions() {
     try {
       await deleteRow(id, endpoint);
       dispatch({ type: ACTIONS.DELETE_ROW, payload: id });
-      console.log(rows)
+      
     } catch (error) {
       console.error('Error deleting row:', error);
     }
@@ -85,7 +84,7 @@ export function useRowsActions() {
     try {
       await restoreRow(id, endpoint);
       dispatch({ type: ACTIONS.RESTORE_ROW, payload: id });
-      console.log(rows)
+      
     } catch (error) {
       console.error('Error restoring row:', error);
     }
@@ -100,5 +99,9 @@ export function useRowsActions() {
     }
   };
 
-  return { handleCreate, handleEdit, handleDelete, handleRestore, handleRows };
+  const handleClearRows = () =>{
+    dispatch({ type: ACTIONS.SET_ROWS, payload: {} });
+  }
+
+  return { handleCreate, handleEdit, handleDelete, handleRestore, handleRows, handleClearRows };
 }

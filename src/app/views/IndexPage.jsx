@@ -1,14 +1,35 @@
 import styles from "../page.module.css"
 import ApexChart from "../components/ChartApex"
+import { useState, useEffect } from "react"
 import { CardDashboard } from "../components/CardDashboard"
 import { DynamicBackground} from "../components/usoMui/DynamicBackground"
-
+import { getStockMax, getStockMin, getStockNot } from "../api/stock"
 
 const content = "Productos agotados"
 const contentMin = "Productos en mínimo"
 const contentMax = "Productos en máximo"
-const num = 42;
+
 export default function IndexPage() {
+  const[min, setMin] = useState()
+  const[max, setMax] = useState()
+  const[not, setNot] = useState()
+
+  useEffect(() => {
+    const valor = async ( ) =>{
+        const [resultMin, resultMax, resultNot] = await Promise.all([
+            getStockMin(),
+            getStockMax(),
+            getStockNot()
+        ]);
+        
+        setMin(resultMin)
+        setMax(resultMax)
+        setNot(resultNot)
+        }
+    valor()
+
+
+  }, []);
   return (
     <section className={styles.page}>
       <h1>Inventario</h1>
@@ -16,19 +37,19 @@ export default function IndexPage() {
         <DynamicBackground>
           <CardDashboard 
               content={content}
-              num={num}
+              num={not}
           />
         </DynamicBackground>
         <DynamicBackground>
         <CardDashboard 
             content={contentMin}
-            num={num}
+            num={min}
         />
         </DynamicBackground>
        <DynamicBackground>
         <CardDashboard 
               content={contentMax}
-              num={num}
+              num={max}
           />
        </DynamicBackground>
         

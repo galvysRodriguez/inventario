@@ -59,11 +59,11 @@
 }
 
 .primaryButton, .secondaryButton{
-  width: 8rem;
-  height: 64px;
+  width: 9rem;
+  height: 48px;
   border-radius: 1rem;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }

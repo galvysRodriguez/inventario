@@ -23,4 +23,25 @@ export const textfieldWarehouse = [
 ];
 
 
+export const textfieldInput = [
+    { name: 'deposito', label: 'Deposito', placeholder:'Deposito',type: 'select' },
+    { name: 'productos', label: 'Productos', placeholder:'Buscar Productos', type: 'select' }
+];
+
+export const textfieldOutput = [
+    { name: 'deposito', label: 'Deposito', placeholder:'Deposito',type: 'select' },
+    { name: 'productos', label: 'Productos', placeholder:'Buscar Productos', type: 'select' }
+];
+
+export const textfieldSale = [
+    { name: 'deposito', label: 'Deposito', placeholder:'Deposito',type: 'select' },
+    { name: 'productos', label: 'Productos', placeholder:'Buscar Productos', type: 'select' }
+];
+
+export const textfieldLoss = [
+    { name: 'deposito', label: 'Deposito', placeholder:'Deposito',type: 'select' },
+    { name: 'productos', label: 'Productos', placeholder:'Buscar Productos', type: 'select' }
+];
+
+
 

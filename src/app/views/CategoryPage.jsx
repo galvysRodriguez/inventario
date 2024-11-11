@@ -6,7 +6,7 @@ import { SkeletonDatagrid } from "@/app/components/usoMui/SkeletonDatagrid";
 import { textfieldCategory } from "../utils/textfield";
 
 export default function CategoryPage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {

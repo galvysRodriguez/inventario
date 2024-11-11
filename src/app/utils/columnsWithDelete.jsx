@@ -38,4 +38,36 @@ export const columnsWithDelete = (columns, handleEditClick) =>{
         )
   
 }
-    
+
+
+export const columnsDelete = (columns) =>{
+  const {handleDelete, handleRestore} = useRowsActions()
+  console.log(columns)
+  return (
+      [
+          ...columns,
+          {
+            field: 'actions',
+            headerName: 'Acciones',
+            renderCell: (params) =>
+              (
+              <>
+                  {params.row.visible ? (
+                    <IconButton onClick={() =>handleDelete(params.id)}>
+                      <Delete />
+                    </IconButton> // Ícono de activo
+                  ) : (
+                    <IconButton onClick={() =>handleRestore(params.id)}>
+                      <AddCircle />
+                    </IconButton>  // Ícono de desactivado
+                  )}
+                  
+              </>
+            ),
+            width: 100,
+          },
+        ]
+      )
+
+}
+  

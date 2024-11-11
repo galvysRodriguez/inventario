@@ -6,29 +6,31 @@ import { SkeletonDatagrid } from "@/app/components/usoMui/SkeletonDatagrid";
 import { textfieldProduct } from "../utils/textfield";
 import { getRowsVisble } from "../api/optionApi";
 import { ENDPOINT_CATEGORY } from "../utils/const";
+import { Suspense } from "react";
 
 export default function CategoryPage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const[category, SetCategory] = useState({})
 
   useEffect(() => {
-    setTimeout(() => {
+ 
       const valor = async ( ) =>{
         const result  = await getRowsVisble(ENDPOINT_CATEGORY)
-        console.log(result)
         SetCategory(result)
       }
         valor()
-      setLoading(false);
-    }, 2000); // Simula la carga de datos
+      
+    // Simula la carga de datos
   }, []);
   return (
         <section className={styles.page}>
             <h1>Productos</h1>
             {loading ? 
               <SkeletonDatagrid></SkeletonDatagrid>:
-              <ColumnSelectorGrid columns={columns} textfield={textfieldProduct} title={"Producto"} options={category}> 
-              </ColumnSelectorGrid>}
+              <Suspense fallback={<SkeletonDatagrid></SkeletonDatagrid>}>
+                  <ColumnSelectorGrid columns={columns} textfield={textfieldProduct} title={"Producto"} options={category}> 
+                  </ColumnSelectorGrid>
+                </Suspense>}
         </section>
         
   );

@@ -19,7 +19,7 @@ import { Input as InputIcon } from "@mui/icons-material";
 
 export const NAVIGATION = [
     {
-      segment: 'home',
+      segment: '',
       title: 'Inicio',
       icon: <Home />,
     },
@@ -105,21 +105,32 @@ export const NAVIGATION = [
       title: 'Reportes',
       icon: <Assessment />,
       children: [
-        {
+        /*{
           segment: 'sales',
           title: 'Historial de movimientos',
           icon: <History />,
-        },
+        },*/
+        
         {
-          segment: 'traza',
-          title: 'Traza de inventario',
+          segment: 'control',
+          title: 'Control de existencias',
           icon: <GpsFixed />,
         },
         {
+          segment: 'input',
+          title: 'Entradas',
+          icon: <InputIcon/>,
+        },
+        {
+          segment: 'output',
+          title: 'Salidas',
+          icon: <Output />,
+        },
+        /*{
           segment: 'traffic',
           title: 'Analisis de inventario',
           icon: <ShowChart/>,
-        },
+        },*/
       ],
     },
   ];

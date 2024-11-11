@@ -44,3 +44,49 @@ export const COLUMN_WAREHOUSE =  [
     { field: 'sede', headerName: 'Sede', width: 180,  resizable: false  },
     visible
 ]
+
+export const COLUMN_INPUT =  [
+    { field: 'id', headerName: 'id', width: 80,  resizable: false  },
+    { field: 'deposito', headerName: 'Deposito', width: 180,  resizable: false  },
+    { field: 'cantidad', headerName: 'Cantidad', width: 80,  resizable: false  },
+    { field: 'costo', headerName: 'Valor', width: 120,  resizable: false  },
+    visible
+]
+
+export const COLUMN_OUTPUT =  [
+    { field: 'id', headerName: 'id', width: 80,  resizable: false  },
+    { field: 'deposito', headerName: 'Deposito', width: 180,  resizable: false  },
+    { field: 'cantidad', headerName: 'Cantidad', width: 80,  resizable: false  },
+    { field: 'costo', headerName: 'Valor', width: 120,  resizable: false  },
+    visible
+]
+
+export const COLUMN_SALE =  [
+    { field: 'id', headerName: 'id', width: 80,  resizable: false  },
+    { field: 'deposito', headerName: 'Deposito', width: 180,  resizable: false  },
+    { field: 'cantidad', headerName: 'Cantidad', width: 80,  resizable: false  },
+    { field: 'costo', headerName: 'Valor', width: 120,  resizable: false  },
+    visible
+]
+
+export const COLUMN_LOSS =  [
+    { field: 'id', headerName: 'id', width: 80,  resizable: false  },
+    { field: 'deposito', headerName: 'Deposito', width: 180,  resizable: false  },
+    { field: 'cantidad', headerName: 'Cantidad', width: 80,  resizable: false  },
+    { field: 'costo', headerName: 'Valor', width: 120,  resizable: false  },
+    visible
+]
+
+export const COLUMN_CONTROL =  [
+    { field: 'titulo', headerName: 'Producto', width: 180,  resizable: false  },
+    {  field: 'stock', headerName: 'Stock', width: 140,  resizable: false  },
+    {  field: 'minimo', headerName: 'Stock Minimo', width: 140,  resizable: false  },
+    {  field: 'maximo', headerName: 'Stock Maximo', width: 140,  resizable: false  },
+]
+
+export const COLUMN_MOVE =  [
+    {  field: 'titulo', headerName: 'Producto', width: 180,  resizable: false  },
+    { field: 'tipo', headerName: 'Tipo', width: 180,  resizable: false  },
+    { field: 'deposito', headerName: 'Deposito', width: 180,  resizable: false  },
+    { field: 'cantidad', headerName: 'Cantidad', width: 80,  resizable: false  },
+]

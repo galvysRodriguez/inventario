@@ -13,7 +13,7 @@ export const keyFirstId = (arr) => {
 
 
 export const createRow = async (newRow, endpoint) => {
-    
+    console.log(newRow)
     const response = await fetch(`${API_URL}${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

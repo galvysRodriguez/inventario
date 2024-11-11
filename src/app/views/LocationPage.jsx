@@ -6,7 +6,7 @@ import { SkeletonDatagrid } from "@/app/components/usoMui/SkeletonDatagrid";
 import { textfieldLocation } from "../utils/textfield";
 
 export default function LocationPage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
