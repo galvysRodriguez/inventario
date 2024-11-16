@@ -45,10 +45,10 @@ export const NAVIGATION = [
       title: 'Movimientos',
       icon: <FireTruck/>,
       children: [
-        {
+        /*{
           kind: 'header',
           title: 'Traslados',
-        },
+        },*/
         {
           segment: 'input',
           title: 'Recibidos',
@@ -64,6 +64,7 @@ export const NAVIGATION = [
           title: 'Ventas',
           icon: <PointOfSale />,
         },
+        /*
         {
           kind: 'divider',
         },
@@ -75,7 +76,7 @@ export const NAVIGATION = [
           segment: 'adjustment',
           title: 'Ajuste de inventario',
           icon: <EditNote />,
-        },
+        },*/
         {
           segment: 'loss',
           title: 'Perdidas',

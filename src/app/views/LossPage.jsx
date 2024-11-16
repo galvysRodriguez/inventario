@@ -2,6 +2,7 @@ import styles from "@/app/page.module.css"
 import { useState, useEffect } from "react";
 import ColumnSelectorGrid from "@/app/components/usoMui/DataGridMui"
 import { COLUMN_LOSS as columns } from "@/app/utils/columns";
+import { textfieldOutput } from "../utils/textfield";
 import { SkeletonDatagrid } from "@/app/components/usoMui/SkeletonDatagrid";
 import { textfieldLoss } from "../utils/textfield";
 import { ENDPOINT_WAREHOUSE, ENDPOINT_PRODUCT } from "../utils/const";
