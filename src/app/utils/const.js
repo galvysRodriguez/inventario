@@ -1,6 +1,6 @@
-export const LOGO = '/images/logo.png'
+import { API_URL } from "../../../config"
 
-export const API_URL = 'http://localhost:8000'
+export const LOGO = '/images/logo.png'
 
 export const ENDPOINT_CATEGORY = `${API_URL}/articles/categories`
 

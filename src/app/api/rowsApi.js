@@ -1,4 +1,4 @@
-import { API_URL } from "@/app/utils/const";
+import { API_URL } from "../../../config";
 
 export const keyFirstId = (arr) => {
     arr.forEach((objeto) => {
