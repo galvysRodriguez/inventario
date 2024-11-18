@@ -19,6 +19,7 @@
     "highcharts": "^11.4.8",
     "highcharts-react-official": "^3.2.1",
     "next": "14.2.15",
+    "pnpm": "^9.13.2",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",

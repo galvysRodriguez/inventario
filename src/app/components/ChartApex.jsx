@@ -1,11 +1,13 @@
-"use client"
+"use client";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts"
-import styles from './style.module.css'
+import { useState } from "react";
+import styles from './style.module.css';
+
+// Import ReactApexChart dynamically with SSR disabled
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const ChartApex = () => {
-  const [chartOptions, setChartOptions] = useState({
+  const [chartOptions] = useState({
     series: [
       {
         name: "series1",
@@ -50,16 +52,13 @@ const ChartApex = () => {
   return (
     <div>
       <div id="chart">
-        {/* Verificamos si estamos en el cliente */}
-        {typeof window !== "undefined" && (
-          <ReactApexChart
-            options={chartOptions.options}
-            series={chartOptions.series}
-            type="area"
-            className={styles.chart}
-            
-          />
-        )}
+        {/* Now ReactApexChart is safely rendered on the client */}
+        <ReactApexChart
+          options={chartOptions.options}
+          series={chartOptions.series}
+          type="area"
+          className={styles.chart}
+        />
       </div>
     </div>
   );

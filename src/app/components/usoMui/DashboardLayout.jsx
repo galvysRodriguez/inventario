@@ -1,5 +1,5 @@
-"use client"
-import { useMemo, useState } from "react";
+'use client';
+import { useMemo, useState, useEffect } from "react";
 import { DemoPageContent } from "./DemoPageContent";
 import { demoTheme } from "./Theme";
 import { AppProvider } from '@toolpad/core/AppProvider';
@@ -10,7 +10,9 @@ import { NAVIGATION } from "./Navigation";
 import { LOGO } from "@/app/utils/const";
 import { DataGridProvider } from "@/app/context/datagrid";
 
-function DashboardLayoutAccount({window, children}) {
+function DashboardLayoutAccount({children }) {
+  const [isClient, setIsClient] = useState(false);
+  const [demoWindow, setDemoWindow] = useState(undefined);
 
   const [session, setSession] = useState({
     user: {
@@ -37,19 +39,28 @@ function DashboardLayoutAccount({window, children}) {
     };
   }, []);
 
-  const router = useDemoRouter('/');
+  const router = useDemoRouter('/')
 
-  // Remove this const when copying and pasting into your project.
-  const demoWindow = window !== undefined ? window() : undefined;
+  useEffect(() => {
+    // Set `isClient` to true when the component is running on the client
+    setIsClient(true);
 
-  console.log(router)
+    // Safe usage of `window`
+    if (typeof window !== 'undefined') {
+      setDemoWindow(window);
+    }
+  }, []);
 
+  // Render only on the client
+  if (!isClient) {
+    return null;
+  }
+  
   return (
-    // preview-start
     <AppProvider
       session={session}
       branding={{
-        logo: <Image src={LOGO} alt="logo" width={42} height={40}></Image>,
+        logo: <Image src={LOGO} alt="logo" width={42} height={40} />,
         title: 'Destiny',
       }}
       authentication={authentication}
@@ -59,16 +70,14 @@ function DashboardLayoutAccount({window, children}) {
       window={demoWindow}
     >
       <DashboardLayout>
-        <DataGridProvider endpoint={router.pathname}>
-          <DemoPageContent pathname={router.pathname}>
+        <DataGridProvider endpoint={router?.pathname}>
+          <DemoPageContent pathname={router?.pathname}>
             {children}
           </DemoPageContent>
         </DataGridProvider>
       </DashboardLayout>
     </AppProvider>
-    // preview-end
   );
 }
 
 export default DashboardLayoutAccount;
-
