@@ -45,11 +45,6 @@ const ChartApex = () => {
             xaxis: {
               categories: res.data.map(item => item.categoria), // Las categorías serán las obtenidas de ventasPorCategoria
             },
-            yaxis: {
-              title: {
-                text: 'Ventas Totales ($)', // Título del eje Y
-              }
-            },
             tooltip: {
               y: {
                 formatter: function(val) {

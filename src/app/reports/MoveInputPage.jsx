@@ -1,7 +1,7 @@
 import styles from "@/app/page.module.css"
 import { useState, useEffect } from "react";
 import ColumnSelectorGrid from "@/app/components/usoMui/DataGridMui"
-import { COLUMN_MOVE as columns } from "@/app/utils/columns";
+import { COLUMN_MOVE_INPUT as columns } from "@/app/utils/columns";
 import { SkeletonDatagrid } from "@/app/components/usoMui/SkeletonDatagrid";
 import { getRowsMoveInput } from "../api/control";
 import ReportTable from "../components/usoMui/ReportTable";

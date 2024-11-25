@@ -84,9 +84,18 @@ export const COLUMN_CONTROL =  [
     {  field: 'maximo', headerName: 'Stock Maximo', width: 140,  resizable: false  },
 ]
 
-export const COLUMN_MOVE =  [
+export const COLUMN_MOVE_OUTPUT =  [
     {  field: 'titulo', headerName: 'Producto', width: 180,  resizable: false  },
     { field: 'tipo', headerName: 'Tipo', width: 180,  resizable: false  },
     { field: 'deposito', headerName: 'Deposito', width: 180,  resizable: false  },
     { field: 'cantidad', headerName: 'Cantidad', width: 80,  resizable: false  },
+    { field: 'precio', headerName: 'Precio', width: 80,  resizable: false  },
+]
+
+export const COLUMN_MOVE_INPUT =  [
+    {  field: 'titulo', headerName: 'Producto', width: 180,  resizable: false  },
+    { field: 'tipo', headerName: 'Tipo', width: 180,  resizable: false  },
+    { field: 'deposito', headerName: 'Deposito', width: 180,  resizable: false  },
+    { field: 'cantidad', headerName: 'Cantidad', width: 80,  resizable: false  },
+    { field: 'costo', headerName: 'Costo', width: 80,  resizable: false  },
 ]

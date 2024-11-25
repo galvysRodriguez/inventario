@@ -55,6 +55,7 @@ export default function IndexPage() {
        </DynamicBackground>
         
      </section>
+     <h1>Ventas totales por categoría</h1>
       <ChartApex/>
     </section>
   );
