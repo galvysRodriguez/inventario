@@ -1,6 +1,6 @@
 'use client';
 import styles from "../page.module.css"
-import ApexChart from "../components/ChartApex"
+import ChartApex from "../components/chartBasic";
 import { useState, useEffect } from "react"
 import { CardDashboard } from "../components/CardDashboard"
 import { DynamicBackground} from "../components/usoMui/DynamicBackground"
@@ -55,7 +55,7 @@ export default function IndexPage() {
        </DynamicBackground>
         
      </section>
-      <ApexChart/>
+      <ChartApex/>
     </section>
   );
 }

@@ -9,74 +9,75 @@ import Image from "next/image";
 import { NAVIGATION } from "./Navigation";
 import { LOGO } from "@/app/utils/const";
 import { DataGridProvider } from "@/app/context/datagrid";
+import { useUser } from "@/app/context/user";
+import { useRouter } from "next/navigation";
+import { Account } from "@toolpad/core";
 
-function DashboardLayoutAccount({children }) {
+function DashboardLayoutAccount({ children }) {
+  const routerA = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [demoWindow, setDemoWindow] = useState(undefined);
+  const { user, setUser, removeUser } = useUser();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const [session, setSession] = useState({
-    user: {
-      name: 'Bharat Kashyap',
-      email: 'bharatkashyap@outlook.com',
-      image: 'https://avatars.githubusercontent.com/u/19550456',
-    },
-  });
-
+  // Authentication functions
   const authentication = useMemo(() => {
     return {
       signIn: () => {
-        setSession({
-          user: {
-            name: 'Bharat Kashyap',
-            email: 'bharatkashyap@outlook.com',
-            image: 'https://avatars.githubusercontent.com/u/19550456',
-          },
-        });
+        routerA.push('/auth');
       },
       signOut: () => {
-        setSession(null);
+        removeUser()
       },
     };
-  }, []);
+  }, [routerA]);
 
-  const router = useDemoRouter('/')
+  // Handling router and authentication logic
+  const router = useDemoRouter('/');
 
   useEffect(() => {
-    // Set `isClient` to true when the component is running on the client
+    // This ensures the client-side environment (avoid SSR issues)
     setIsClient(true);
 
-    // Safe usage of `window`
+    // Safe usage of `window` object
     if (typeof window !== 'undefined') {
       setDemoWindow(window);
     }
-  }, []);
 
-  // Render only on the client
-  if (!isClient) {
-    return null;
+    // Check user authentication and redirect if not authenticated
+    if (user === null) {
+      routerA.push('/auth');
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, [user, routerA]);
+
+  // Only render on client-side
+  if (!isClient || !isAuthenticated) {
+    return null; // Don't render the component until it's safe to do so
   }
-  
+
   return (
-    <AppProvider
-      session={session}
-      branding={{
-        logo: <Image src={LOGO} alt="logo" width={42} height={40} />,
-        title: 'Destiny',
-      }}
-      authentication={authentication}
-      navigation={NAVIGATION}
-      router={router}
-      theme={demoTheme}
-      window={demoWindow}
-    >
-      <DashboardLayout>
-        <DataGridProvider endpoint={router?.pathname}>
-          <DemoPageContent pathname={router?.pathname}>
-            {children}
-          </DemoPageContent>
-        </DataGridProvider>
-      </DashboardLayout>
-    </AppProvider>
+      <AppProvider
+        session={user}
+        branding={{
+          logo: <Image src={LOGO} alt="logo" width={42} height={40} />,
+          title: 'Destiny',
+        }}
+        authentication={authentication}
+        navigation={NAVIGATION}
+        router={router}
+        theme={demoTheme}
+        window={demoWindow}
+      >
+        <DashboardLayout>
+          <DataGridProvider endpoint={router?.pathname}>
+            <DemoPageContent pathname={router?.pathname}>
+              {children}
+            </DemoPageContent>
+          </DataGridProvider>
+        </DashboardLayout>
+      </AppProvider>
   );
 }
 

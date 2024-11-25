@@ -1,22 +1,12 @@
-'use client';
-import localFont from "next/font/local";
-import { useState, useEffect } from "react";
-import "./globals.css";
-import { inter } from "./fonts/fonts";
-import dynamic from "next/dynamic";
+"use client"
+import { UserProvider } from "@/app/context/user" 
 
-const DashboardLayoutAccount = dynamic(() => import("./components/usoMui/DashboardLayout"), {
-    ssr: false,
-});
-
-export default function RootLayout({ children }) {
+const Layout = ({ children }) => {
   return (
-      <html lang="en">
-      <body className={inter.className}>
-        <DashboardLayoutAccount>
-          {children}
-        </DashboardLayoutAccount>
-      </body>
-    </html>
+    <UserProvider>
+        {children}
+    </UserProvider>
   );
-}
+};
+
+export default Layout;

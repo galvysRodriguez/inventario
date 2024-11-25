@@ -56,6 +56,7 @@ export const Form = ({
         event.preventDefault();
         const send = {...formData, productos: selectedProducts}
         initialData ? onSubmit(send, initialData.id): onSubmit(send);
+        handleSetProducts([]);
         onClose();
     };
 

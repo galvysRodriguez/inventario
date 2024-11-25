@@ -1,8 +1,8 @@
 'use client';
-import styles from "./page.module.css"
-import ApexChart from "./components/ChartApex"
-import { CardDashboard } from "./components/CardDashboard"
-import { DynamicBackground} from "./components/usoMui/DynamicBackground"
+import styles from "../page.module.css"
+import ApexChart from "../components/ChartApex"
+import { CardDashboard } from "../components/CardDashboard"
+import { DynamicBackground} from "../components/usoMui/DynamicBackground"
 
 /*
 export default function Home() {

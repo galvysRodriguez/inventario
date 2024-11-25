@@ -43,5 +43,8 @@ export const textfieldLoss = [
     { name: 'productos', label: 'Productos', placeholder:'Buscar Productos', type: 'select' }
 ];
 
-
+export const textfieldAuth = [
+    { name: 'correo', label: 'Correo', placeholder:'Correo electrónico',type: 'text' },
+    { name: 'contraseña', label: 'Contraseña', placeholder:'Contraseña', type: 'password' }
+];
 

@@ -16,6 +16,7 @@ export const createRow = async (newRow, endpoint) => {
     console.log(newRow)
     const response = await fetch(`${API_URL}${endpoint}`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newRow),
     });
@@ -26,7 +27,7 @@ export const createRow = async (newRow, endpoint) => {
   };
 
   export const getRows = async (endpoint) => {
-    const response = await fetch(`${API_URL}${endpoint}`);
+    const response = await fetch(`${API_URL}${endpoint}`, {credentials: 'include'});
     
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();
@@ -35,7 +36,7 @@ export const createRow = async (newRow, endpoint) => {
   };
 
   export const getRow = async (id, endpoint) => {
-    const response = await fetch(`${API_URL}${endpoint}/${id}`);
+    const response = await fetch(`${API_URL}${endpoint}/${id}`, {credentials: 'include'});
     if (!response.ok) throw new Error('Error get row');
     return response.json();
   };
@@ -44,6 +45,7 @@ export const createRow = async (newRow, endpoint) => {
   export const updateRow = async (updatedRow, endpoint) => {
     const response = await fetch(`${API_URL}${endpoint}/${updatedRow.id}`, {
       method: 'PUT',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedRow),
     });
@@ -51,12 +53,12 @@ export const createRow = async (newRow, endpoint) => {
   };
   
   export const deleteRow = async (id, endpoint) => {
-    const response = await fetch(`${API_URL}${endpoint}/${id}`, { method: 'DELETE' });
+    const response = await fetch(`${API_URL}${endpoint}/${id}`, { method: 'DELETE', credentials: 'include' });
     if (!response.ok) throw new Error('Error deleting row');
   };
   
   export const restoreRow = async (id, endpoint) => {
-    const response = await fetch(`${API_URL}${endpoint}/restore/${id}`, { method: 'PUT' });
+    const response = await fetch(`${API_URL}${endpoint}/restore/${id}`, { method: 'PUT', credentials: 'include' });
     if (!response.ok) throw new Error('Error restoring row');
   };
   

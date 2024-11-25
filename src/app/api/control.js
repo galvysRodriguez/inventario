@@ -1,7 +1,7 @@
 import { ENDPOINT_CONTROL, ENDPOINT_MOVE_INPUT, ENDPOINT_MOVE_OUTPUT } from "../utils/const";
 
 export const getRowsControl = async () => {
-    const response = await fetch(ENDPOINT_CONTROL);
+    const response = await fetch(ENDPOINT_CONTROL, {credentials: 'include'});
     
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();
@@ -9,7 +9,7 @@ export const getRowsControl = async () => {
   };
 
   export const getRowsMoveInput = async () => {
-    const response = await fetch(ENDPOINT_MOVE_INPUT);
+    const response = await fetch(ENDPOINT_MOVE_INPUT, {credentials: 'include'});
     
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();
@@ -17,7 +17,7 @@ export const getRowsControl = async () => {
   };
 
   export const getRowsMoveOutput = async () => {
-    const response = await fetch(ENDPOINT_MOVE_OUTPUT);
+    const response = await fetch(ENDPOINT_MOVE_OUTPUT, {credentials: 'include'});
     
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();
