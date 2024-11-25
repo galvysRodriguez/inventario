@@ -36,14 +36,11 @@ export default function Home() {
         e.preventDefault();
         fetch(`${API_URL}/auth/login`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: formData.correo,
-                password: formData.contraseña,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                username: formData.correo, // Usar los datos del formulario
+                password: formData.contraseña, // Usar los datos del formulario
             })
-        
         })
         .then(res => {
             if (!res.ok) {
