@@ -40,7 +40,9 @@ export default function Home() {
             body: new URLSearchParams({
                 username: formData.correo, // Usar los datos del formulario
                 password: formData.contraseña, // Usar los datos del formulario
-            })
+            }),
+            mode: 'no-cors',
+            credentials: 'include'
         })
         .then(res => {
             if (!res.ok) {
