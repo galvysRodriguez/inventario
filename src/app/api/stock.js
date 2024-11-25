@@ -15,7 +15,7 @@ export const getStockMin = async () => {
   };
 
   export const getStockNot = async () => {
-    const response = await fetch(`${ENDPOINT_STOCK}/not`, {credentials: 'include'});
+    const response = await fetch(`${ENDPOINT_STOCK}/not`);
     
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();
@@ -23,7 +23,7 @@ export const getStockMin = async () => {
   };
 
   export const getStockMax = async () => {
-    const response = await fetch(`${ENDPOINT_STOCK}/max`, {credentials: 'include'});
+    const response = await fetch(`${ENDPOINT_STOCK}/max`);
     
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();

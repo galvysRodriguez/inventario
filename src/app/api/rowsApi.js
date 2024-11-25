@@ -27,7 +27,7 @@ export const createRow = async (newRow, endpoint) => {
   };
 
   export const getRows = async (endpoint) => {
-    const response = await fetch(`${API_URL}${endpoint}`, {credentials: 'include'});
+    const response = await fetch(`${API_URL}${endpoint}`);
     
     if (!response.ok) throw new Error('Error get rows');
     const data = await response.json();
@@ -36,7 +36,7 @@ export const createRow = async (newRow, endpoint) => {
   };
 
   export const getRow = async (id, endpoint) => {
-    const response = await fetch(`${API_URL}${endpoint}/${id}`, {credentials: 'include'});
+    const response = await fetch(`${API_URL}${endpoint}/${id}`);
     if (!response.ok) throw new Error('Error get row');
     return response.json();
   };
